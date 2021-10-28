@@ -15,6 +15,8 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <pi4j.version>2.0</pi4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -32,11 +34,34 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- PIJ4 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- include Pi4J Core -->
         <dependency>
             <groupId>com.pi4j</groupId>
             <artifactId>pi4j-core</artifactId>
-            <version>1.3</version>
+            <version>${pi4j.version}</version>
+        </dependency>
+
+        <!-- include Pi4J Plugins (Platforms and I/O Providers) -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-plugin-raspberrypi</artifactId>
+            <version>${pi4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-plugin-pigpio</artifactId>
+            <version>${pi4j.version}</version>
         </dependency>
     </dependencies>
 
