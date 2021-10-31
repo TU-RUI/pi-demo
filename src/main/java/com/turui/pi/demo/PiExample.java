@@ -12,8 +12,8 @@ import com.pi4j.util.Console;
  * Created on 2021-10-27
  */
 public class PiExample {
-    /** PIN 15 = BCM 22 */
-    private static final int PIN_LED = 22;
+    /** 注意这里需要填BCM编码，BCM 17 = PIN 11 */
+    private static final int PIN_LED = 17;
 
     public static void main(String[] args) throws InterruptedException {
         final Console console = new Console();
@@ -34,13 +34,15 @@ public class PiExample {
                 .initial(DigitalState.LOW)
                 .provider("pigpio-digital-output");
         DigitalOutput led = pi4j.create(ledConfig);
-
+	console.println("---- led start ----");
         for (int i = 0; i < 10; i++) {
-            led.high();
+            //led.high();
+	    led.state(DigitalState.HIGH);
             Thread.sleep(1000);
-            led.low();
+            //led.low();
+	    led.state(DigitalState.LOW);
         }
-        console.println("led end");
+        console.println("----  led end  ----");
 
         pi4j.shutdown();
     }
