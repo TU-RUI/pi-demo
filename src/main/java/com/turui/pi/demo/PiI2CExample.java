@@ -47,10 +47,12 @@ public class PiI2CExample {
                 throw  new IllegalStateException(
                         "Failed to read configuration from address 0x" + String.format("%02x", PCA9685_OUTPUT_1));
             }
+            console.println("config1 is succ! state=" + config1);
             if (config2 < 0) {
                 throw  new IllegalStateException(
                         "Failed to read configuration from address 0x" + String.format("%02x", PCA9685_OUTPUT_2));
             }
+            console.println("config2 is succ! state=" + config2);
             byte state1 = 0x00;
             pca9685.writeRegister(PCA9685_OUTPUT_1, state1);
             pca9685.writeRegister(PCA9685_OUTPUT_2, state1);

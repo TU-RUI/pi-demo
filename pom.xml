@@ -81,7 +81,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.turui.pi.demo.PiLEDExample</mainClass>
+                    <mainClass>com.turui.pi.demo.PiI2CExample</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
