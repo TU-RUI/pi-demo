@@ -68,6 +68,7 @@ public class PiExample {
             Thread.sleep(1000);
             led.state(DigitalState.LOW);
             console.println("---- led low ----");
+            Thread.sleep(1000);
         }
         console.println("----  led end  ----");
 //        DigitalOutput digitalOutput = pi4j.dout().create(PIN_LED);
