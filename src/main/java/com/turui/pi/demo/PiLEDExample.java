@@ -22,7 +22,7 @@ import com.pi4j.util.Console;
  * @author turui <turui@kuaishou.com>
  * Created on 2021-10-27
  */
-public class PiExample {
+public class PiLEDExample {
     /**
      * 注意这里需要填BCM编码，BCM 17 = PIN 11
      */
@@ -50,17 +50,7 @@ public class PiExample {
         PrintInfo.printDefaultPlatform(console, pi4j);
         PrintInfo.printProviders(console, pi4j);
 
-        // Here we will create I/O interfaces for a (GPIO) digital output
-        // and input pin. We define the 'provider' to use PiGpio to control
-        // the GPIO.
-        DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(pi4j)
-                .id("led")
-                .name("LED Flasher")
-                .address(PIN_LED)
-                .shutdown(DigitalState.LOW)
-                .initial(DigitalState.LOW)
-                .provider("pigpio-digital-output");
-        DigitalOutput led = pi4j.create(ledConfig);
+        DigitalOutput led = pi4j.dout().create(PIN_LED);
         console.println("---- led start ----");
         for (int i = 0; i < 10; i++) {
             led.state(DigitalState.HIGH);
@@ -71,26 +61,11 @@ public class PiExample {
             Thread.sleep(1000);
         }
         console.println("----  led end  ----");
-//        DigitalOutput digitalOutput = pi4j.dout().create(PIN_LED);
-//        digitalOutput.addListener(System.out::println);
-//        //闪烁
-//        digitalOutput.state(DigitalState.HIGH)
-//                .state(DigitalState.LOW)
-//                .state(DigitalState.HIGH)
-//                .state(DigitalState.LOW);
-//        //
-//        digitalOutput.toggle()
-//                .toggle()
-//                .toggle();
-//        digitalOutput.low().high().low().high();
-//
-//        console.println("CURRENT DIGITAL OUTPUT [" + digitalOutput + "] STATE IS [" + digitalOutput.state() + "]");
-//        console.println("PULSING OUTPUT STATE TO HIGH FOR 3 SECONDS");
-//        digitalOutput.pulse(3, TimeUnit.SECONDS, DigitalState.HIGH);
-//        console.println("PULSING OUTPUT STATE COMPLETE");
 
         pi4j.shutdown();
     }
+
+
 
 
 }

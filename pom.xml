@@ -68,6 +68,11 @@
             <artifactId>pi4j-plugin-mock</artifactId>
             <version>${pi4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-plugin-linuxfs</artifactId>
+            <version>${pi4j.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -76,7 +81,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.turui.pi.demo.PiExample</mainClass>
+                    <mainClass>com.turui.pi.demo.PiLEDExample</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
