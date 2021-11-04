@@ -21,8 +21,8 @@ public class PiI2CExample {
     /**
      * I2C设备输出通道，0-16
      */
-    private static final byte PCA9685_OUTPUT_1 = 0x01;
-    private static final byte PCA9685_OUTPUT_2 = 0x01;
+    private static final byte PCA9685_OUTPUT_1 = 0x0f;
+    private static final byte PCA9685_OUTPUT_2 = 0x0e;
 
     public static void main(String[] args) throws InterruptedException {
         final Console console = new Console();
