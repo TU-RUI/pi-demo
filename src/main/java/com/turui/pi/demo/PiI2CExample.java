@@ -38,6 +38,7 @@ public class PiI2CExample {
     private static final int CHANNEL_2 = 15;
 
     private static Context pi4j;
+    private static final Console console = new Console();
 
 
     //初始化
@@ -47,6 +48,7 @@ public class PiI2CExample {
         int preScale = (int) Math.floor((CLOCK_FREQ / 4096) / 50 - 0.5);
 
         int oldMode = pca9685.readRegister(MODE1);
+        console.println("oldMode:" + oldMode);
         //sleep
         int newMode = (oldMode & 0x7F) | 0x10;
         pca9685.writeRegister(MODE1, newMode);
@@ -67,7 +69,7 @@ public class PiI2CExample {
 
 
     public static void main(String[] args) throws InterruptedException {
-        final Console console = new Console();
+
         console.title("<-- The Pi4J Project -->", "Minimal Example project");
         //自动生成，context需要全局唯一
         pi4j = Pi4J.newAutoContext();
@@ -89,6 +91,7 @@ public class PiI2CExample {
         try (I2C pca9685 = i2CProvider.create(i2cConfig)) {
             //初始化
             initPCA9685(pca9685);
+            Thread.sleep(200);
             console.println("----  pca9685 init  ----");
             for (int i = 500; i < 2500; i += 100) {
                 setServoPulse(pca9685, CHANNEL_1, i);
