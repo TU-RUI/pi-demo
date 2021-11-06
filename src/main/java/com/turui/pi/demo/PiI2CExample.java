@@ -79,7 +79,7 @@ public class PiI2CExample {
 
 
         console.println("----  i2c start  ----");
-        I2CProvider i2CProvider = pi4j.provider("i2c");
+        I2CProvider i2CProvider = pi4j.provider("linuxfs-i2c");
         //查看i2c设备地址：sudo i2cdetect -y 1
         I2CConfig i2cConfig = I2C.newConfigBuilder(pi4j)
                 .id("PCA9685")
