@@ -89,39 +89,28 @@ public class PiI2CExample {
         try (I2C pca9685 = i2CProvider.create(i2cConfig)) {
             //初始化
             initPCA9685(pca9685);
+            console.println("----  pca9685 init  ----");
+            for (int i = 500; i < 2500; i += 100) {
+                setServoPulse(pca9685, CHANNEL_1, i);
+                setServoPulse(pca9685, CHANNEL_2, i);
+                console.println("----  set pwm  ----");
+                Thread.sleep(200);
+            }
         }
-
         console.println("----  i2c end  ----");
-
         pi4j.shutdown();
     }
 
-    public static byte setPin(byte currentState, int pin, I2C i2c, byte addr,  boolean high) {
-        byte newState;
-        if (high) {
-            newState = (byte) (currentState | (1 << pin));
-        } else {
-            newState = (byte) (currentState & ~(1 << pin));
-        }
-
-        System.out.println("Setting" + i2c.getName() + " to new state " + asBinary(newState));
-        i2c.writeRegister(addr, newState);
-        return newState;
+    public static void setPWM(I2C pca9685, int channel, int on, int off) {
+        pca9685.writeRegister(LED0_ON_L + SHIFT * channel, on & 0xFF);
+        pca9685.writeRegister(LED0_ON_H + SHIFT * channel, on >> 8);
+        pca9685.writeRegister(LED0_OFF_L + SHIFT * channel, on >> 0xFF);
+        pca9685.writeRegister(LED0_OFF_H + SHIFT * channel, on >> 8);
     }
 
-    public static String asBinary(byte b) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(((b >>> 7) & 1));
-        sb.append(((b >>> 6) & 1));
-        sb.append(((b >>> 5) & 1));
-        sb.append(((b >>> 4) & 1));
-        sb.append(((b >>> 3) & 1));
-        sb.append(((b >>> 2) & 1));
-        sb.append(((b >>> 1) & 1));
-        sb.append(((b >>> 0) & 1));
-
-        return sb.toString();
+    public static void setServoPulse(I2C pca9685, int channel, int pulse) {
+        pulse = pulse * 4096 / 20000;
+        setPWM(pca9685, channel, 0, pulse);
     }
 
 
