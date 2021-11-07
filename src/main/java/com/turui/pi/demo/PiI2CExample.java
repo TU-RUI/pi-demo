@@ -106,8 +106,8 @@ public class PiI2CExample {
     public static void setPWM(I2C pca9685, int channel, int on, int off) {
         pca9685.writeRegister(LED0_ON_L + SHIFT * channel, on & 0xFF);
         pca9685.writeRegister(LED0_ON_H + SHIFT * channel, on >> 8);
-        pca9685.writeRegister(LED0_OFF_L + SHIFT * channel, on >> 0xFF);
-        pca9685.writeRegister(LED0_OFF_H + SHIFT * channel, on >> 8);
+        pca9685.writeRegister(LED0_OFF_L + SHIFT * channel, off >> 0xFF);
+        pca9685.writeRegister(LED0_OFF_H + SHIFT * channel, off >> 8);
     }
 
     public static void setServoPulse(I2C pca9685, int channel, int pulse) {
