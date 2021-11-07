@@ -93,12 +93,11 @@ public class PiI2CExample {
             initPCA9685(pca9685);
             Thread.sleep(200);
             console.println("----  pca9685 init  ----");
-            for (int i = 500; i < 2500; i += 100) {
-                setServoPulse(pca9685, CHANNEL_1, i);
-                setServoPulse(pca9685, CHANNEL_2, i);
-                console.println("----  set pwm  ----");
-                Thread.sleep(200);
-            }
+            setServoPulse(pca9685, CHANNEL_1, 1500);
+            Thread.sleep(200);
+            setServoPulse(pca9685, CHANNEL_2, 1500);
+            console.println("----  set pwm  ----");
+            Thread.sleep(200);
         }
         console.println("----  i2c end  ----");
         pi4j.shutdown();
