@@ -53,7 +53,6 @@ public class PiI2CExample {
         int newMode = (oldMode & 0x7F) | 0x10;
         pca9685.writeRegister(MODE1, newMode);
 
-        pca9685.writeRegister(MODE1, newMode);
         //设置频率
         pca9685.writeRegister(PRE_SCALE, preScale);
         pca9685.writeRegister(MODE1, oldMode);
@@ -91,13 +90,13 @@ public class PiI2CExample {
         try (I2C pca9685 = i2CProvider.create(i2cConfig)) {
             //初始化
             initPCA9685(pca9685);
-            Thread.sleep(200);
+            Thread.sleep(500);
             console.println("----  pca9685 init  ----");
             setServoPulse(pca9685, CHANNEL_1, 1500);
-            Thread.sleep(200);
+            Thread.sleep(500);
             setServoPulse(pca9685, CHANNEL_2, 1500);
             console.println("----  set pwm  ----");
-            Thread.sleep(200);
+            Thread.sleep(500);
         }
         console.println("----  i2c end  ----");
         pi4j.shutdown();
@@ -106,7 +105,7 @@ public class PiI2CExample {
     public static void setPWM(I2C pca9685, int channel, int on, int off) {
         pca9685.writeRegister(LED0_ON_L + SHIFT * channel, on & 0xFF);
         pca9685.writeRegister(LED0_ON_H + SHIFT * channel, on >> 8);
-        pca9685.writeRegister(LED0_OFF_L + SHIFT * channel, off >> 0xFF);
+        pca9685.writeRegister(LED0_OFF_L + SHIFT * channel, off & 0xFF);
         pca9685.writeRegister(LED0_OFF_H + SHIFT * channel, off >> 8);
     }
 
