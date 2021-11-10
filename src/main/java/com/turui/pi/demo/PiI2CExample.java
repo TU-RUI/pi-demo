@@ -34,8 +34,8 @@ public class PiI2CExample {
 
     private static final byte SHIFT = 4;
     //舵机通道14,15
-    private static final int CHANNEL_1 = 14;
-    private static final int CHANNEL_2 = 15;
+    private static final int CHANNEL_1 = 0;
+    private static final int CHANNEL_2 = 1;
 
     private static Context pi4j;
     private static final Console console = new Console();
@@ -92,22 +92,18 @@ public class PiI2CExample {
             initPCA9685(pca9685);
             Thread.sleep(500);
             console.println("----  pca9685 init  ----");
-            setServoPulse(pca9685, CHANNEL_1, 500);
-            setServoPulse(pca9685, CHANNEL_2, 500);
-            console.println("----  set pwm  ----");
-            Thread.sleep(500);
-            setServoPulse(pca9685, CHANNEL_1, 1500);
-            setServoPulse(pca9685, CHANNEL_2, 1500);
-            console.println("----  set pwm  ----");
-            Thread.sleep(500);
-            setServoPulse(pca9685, CHANNEL_1, 2500);
-            setServoPulse(pca9685, CHANNEL_2, 2500);
-            console.println("----  set pwm  ----");
-            Thread.sleep(500);
-            setServoPulse(pca9685, CHANNEL_1, 1500);
-            setServoPulse(pca9685, CHANNEL_2, 1500);
-            console.println("----  set pwm  ----");
-            Thread.sleep(500);
+            for (int k = 0; k < 5; k++) {
+                for (int i = 500; i < 2500; i+=10) {
+                    setServoPulse(pca9685, CHANNEL_1, i);
+                    setServoPulse(pca9685, CHANNEL_2, i);
+                    console.println("----  set pwm  ----");
+                }
+                for (int i = 2500; i > 500; i-=10) {
+                    setServoPulse(pca9685, CHANNEL_1, i);
+                    setServoPulse(pca9685, CHANNEL_2, i);
+                    console.println("----  set pwm  ----");
+                }
+            }
         }
         console.println("----  i2c end  ----");
         pi4j.shutdown();
