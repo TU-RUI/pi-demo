@@ -2,8 +2,6 @@ package com.turui.pi.demo;
 
 import com.pi4j.Pi4J;
 import com.pi4j.context.Context;
-import com.pi4j.io.gpio.digital.DigitalOutput;
-import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.i2c.I2C;
 import com.pi4j.io.i2c.I2CConfig;
 import com.pi4j.io.i2c.I2CProvider;
@@ -74,9 +72,9 @@ public class PiI2CExample {
         pi4j = Pi4J.newAutoContext();
 
         console.title("<-- Pi4J Context created -->");
-        PrintInfo.printLoadedPlatforms(console, pi4j);
-        PrintInfo.printDefaultPlatform(console, pi4j);
-        PrintInfo.printProviders(console, pi4j);
+        PrintInfo.printLoadedPlatforms(pi4j);
+        PrintInfo.printDefaultPlatform(pi4j);
+        PrintInfo.printProviders(pi4j);
 
 
         console.println("----  i2c start  ----");

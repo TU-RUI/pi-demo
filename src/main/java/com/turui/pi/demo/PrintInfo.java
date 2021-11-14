@@ -19,6 +19,19 @@ import com.pi4j.util.Console;
  * </ul>
  */
 public class PrintInfo {
+    private static final Console console = new Console();
+
+    public static Console getConsole() {
+        return console;
+    }
+
+    public static void println(String s) {
+        console.println(s);
+    }
+
+    public static void title(String... title) {
+        console.title(title);
+    }
 
     /**
      * Pi4J Platforms.
@@ -32,10 +45,9 @@ public class PrintInfo {
      * inputs and outputs.</p>
      * <p>Platforms also provide validation for the I/O pins and their capabilities for the target hardware.</p>
      *
-     * @param console {@link Console}
      * @param pi4j    {@link Context}
      */
-    public static void printLoadedPlatforms(Console console, Context pi4j) {
+    public static void printLoadedPlatforms(Context pi4j) {
         Platforms platforms = pi4j.platforms();
 
         // Let's print out to the console the detected and loaded
@@ -55,10 +67,9 @@ public class PrintInfo {
      * define the default I/O providers that Pi4J will use for each given I/O interface when creating and registering
      * I/O instances.</p>
      *
-     * @param console {@link Console}
      * @param pi4j    {@link Context}
      */
-    public static void printDefaultPlatform(Console console, Context pi4j) {
+    public static void printDefaultPlatform(Context pi4j) {
         Platform platform = pi4j.platform();
 
         // Let's print out to the console the detected and loaded
@@ -93,10 +104,9 @@ public class PrintInfo {
      * <p>Providers allow for a completely flexible and extensible infrastructure enabling third-parties to build and
      * extend the capabilities of Pi4J by writing your/their own Provider implementation libraries.</p>
      *
-     * @param console {@link Console}
      * @param pi4j    {@link Context}
      */
-    public static void printProviders(Console console, Context pi4j) {
+    public static void printProviders(Context pi4j) {
         Providers providers = pi4j.providers();
 
         // Let's print out to the console the detected and loaded
@@ -111,10 +121,9 @@ public class PrintInfo {
      * Pi4J Registry
      * <p>The registry stores the state of all the I/O managed by Pi4J.</p>
      *
-     * @param console {@link Console}
      * @param pi4j    {@link Context}
      */
-    public static void printRegistry(Console console, Context pi4j) {
+    public static void printRegistry(Context pi4j) {
         Registry registry = pi4j.registry();
 
         // Let's print out to the console the detected and loaded

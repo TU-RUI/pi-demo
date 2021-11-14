@@ -19,3 +19,11 @@ https://blog.csdn.net/m0_46552807/article/details/107641895
 
 PCA9685：I2C转16路PWM，助力你的系统   
 https://zhuanlan.zhihu.com/p/67336644
+
+camera模块
+摄像头库：https://github.com/caprica/picam
+https://github.com/Hopding/JRPiCam
+
+opencv+raspberry pi
+http://stefanshacks.blogspot.com/2015/05/build-opencv-with-java-bindings-on_6.html?m=1
+https://blog.csdn.net/cnbloger/article/details/77513514
